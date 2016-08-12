@@ -38,5 +38,5 @@ while [ "${#options[@]}" -gt 0 ]; do
 done
 
 echo "RUNNING: $COMMAND for directory $DIR"
-docker run -it -v $DIR:/var/www/html php-composer:5.6.24-fpm /bin/bash -c "$COMMAND"
+docker run --rm -it -v $DIR:/var/www/html php-composer:5.6.24-fpm /bin/bash -c "$COMMAND"
 sudo chown -R $USER:$GROUP $DIR
