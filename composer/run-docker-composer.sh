@@ -16,10 +16,10 @@ options=($@)
 while [ "${#options[@]}" -gt 0 ]; do
   case "${options[0]}" in
     -d|--directory)
-      if [ ! -d ${options[1]} ]; then
-        fail "Option -d requires a path to a directory as an argument."
+      DIR=$(realpath ${options[1]})
+      if [ ! -d $DIR ]; then
+        fail "Option ${options[0]} requires a path to a directory as an argument."
       fi
-      DIR=${options[1]}
       options=(${options[@]:1})
       ;;
     -u|--user)
