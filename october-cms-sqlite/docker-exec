@@ -1,0 +1,12 @@
+#!/bin/bash
+
+DIR=`dirname $0`
+APP_DIR=$DIR/php/app/
+
+# You will find php-composer in: https://github.com/mcustiel/docker-configs/tree/master/composer
+docker run -it -v $APP_DIR:/var/www/html php-composer:5.6.24-fpm /bin/bash -c "$*"
+
+sudo chown -R $USER:$GROUP $APP_DIR
+sudo chmod -R 0777 $APP_DIR/storage
+
+

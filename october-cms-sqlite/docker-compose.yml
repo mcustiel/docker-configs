@@ -1,0 +1,17 @@
+web:
+  build: ./nginx/
+  links:
+    - app
+  ports:
+    - "8001:80"
+  volumes_from:
+    - app
+
+app:
+  build: ./php
+  ports:
+    - "9001:9000"
+  volumes:
+    - ./php/app:/var/www/html
+  environment:
+    - APP_ENV=development
