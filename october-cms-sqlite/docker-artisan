@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker exec -it octobercmssqlite_app_1 /bin/bash -c "cd /var/www/html && php artisan $*"
+

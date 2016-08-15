@@ -14,4 +14,4 @@ app:
   volumes:
     - ./php/app:/var/www/html
   environment:
-    - APP_ENV=development
+    - APP_ENV=local

@@ -10,8 +10,5 @@ A docker-compose setup to run october cms using local sqlite as database.
 
 # Running commands:
 
-Use docker-exec script like: `./docker-exec php artisan october:up`
-
-**Note:** docker-exec requires php-composer, which you can find in: https://github.com/mcustiel/docker-configs/tree/master/composer
-
+Use docker-artisan script like: `./docker-artisan october:up`
 
