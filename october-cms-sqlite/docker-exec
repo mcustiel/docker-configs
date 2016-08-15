@@ -1,12 +1,38 @@
 #!/bin/bash
 
+USER=$(id -u)
+GROUP=$(id -g)
 DIR=`dirname $0`
 APP_DIR=$DIR/php/app/
 
+function fail() {
+  echo $1 >&2
+  exit 1
+}
+
+COMMAND=""
+options=($@)
+
+while [ "${#options[@]}" -gt 0 ]; do
+  case "${options[0]}" in
+    -u|--user)
+      USER=${options[1]}
+      options=(${options[@]:1})
+      ;;
+    -g|--group)
+      GROUP=${options[1]}
+      options=(${options[@]:1})
+      ;;
+    *)
+      COMMAND="$COMMAND ${options[0]}"
+      ;;
+  esac
+  options=(${options[@]:1})
+done
+
 # You will find php-composer in: https://github.com/mcustiel/docker-configs/tree/master/composer
-docker run -it -v $APP_DIR:/var/www/html php-composer:5.6.24-fpm /bin/bash -c "$*"
+docker run -it -v $APP_DIR:/var/www/html php-composer:5.6.24-fpm /bin/bash -c "$COMMAND"
 
 sudo chown -R $USER:$GROUP $APP_DIR
 sudo chmod -R 0777 $APP_DIR/storage
-
 
